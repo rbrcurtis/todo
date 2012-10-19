@@ -1,0 +1,5 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) was unblocked" %>
+
+<%- @render('header') %>
+<%- @format.user(@action.user) %> unblocked the story in the <%- @format.phase(@event.phase) %> phase.
+<%- @render('footer') %>

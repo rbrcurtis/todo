@@ -1,0 +1,43 @@
+<% @subject = "[AgileZen Billing] Cancellation - #{@account.name}, #{@account.plan.description} Plan" %>
+<html>
+	<body style="font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 13px">
+		<table style="margin-bottom:1em">
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Account</td>
+				<td><%=@account.name%> (<%=@account.id%>)</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Owner</td>
+				<td><%=@account.owner.name%> (<%=@account.owner.id%>) &mdash; <%=@account.owner.email%></td>
+			</tr>
+			<% if @account.billingId?: %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Billing ID</td>
+				<td><%=@account.billingId%></td>
+			</tr>
+			<% end %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Account Created</td>
+				<td><%=@format.time(@account.createTime)%> UTC</td>
+			</tr>
+			<% if @account.billStartTime?: %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Bill Start Date</td>
+				<td><%=@format.date(@account.billStartTime)%> UTC</td>
+			</tr>
+			<% end %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Plan</td>
+				<td><%=@account.plan.description%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Refund Given</td>
+				<td><%=if @refunded then "Yes" else "No"%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Reason</td>
+				<td><%=@reason%></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 0 0 20px">
+								<table style="width: 100%" cellpadding="0" cellspacing="0">
+									<tr>
+										<td style="padding: 10px 10px 0; border: 1px dotted #ccc">
+											<table style="width: 100%" cellpadding="0" cellspacing="0">
+												<tr>
+													<td style="padding: 0 0 10px; color: #666; font-size: 16px; font-style: italic">
+														<%- @event.story.text %>
+													</td>
+												</tr>
+												<%- if @event.story.status is 'blocked' then @render('blocked') %>
+												<%- if @event.story.tags?.length > 0 then @render('tags') %>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<%- @render('timestamps') %>
+						<%- if @event.story.status is 'finished' then @render('metrics') %>
+						<tr>
+							<td style="padding: 20px 0; color: #888; font-size: 16px; border-top: 1px solid #ddd">
+								<a href="<%= @format.url("/project/#{@event.project.id}/board") %>" style="color: #666">Go to the board</a> &mdash;
+								<a href="<%= @format.url("/project/#{@event.project.id}/story/#{@event.story.ref}") %>" style="color: #666">Go to the story</a> &mdash;
+								<a href="<%= @format.url("/dashboard") %>" style="color: #666">Go to your dashboard</a>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 10px 0; font-size: 15px; line-height: 16px; font-style: italic; color: #888; border-top: 1px dotted #ccc">
+								You're receiving this email because you've asked <a href="<%= @format.url("/") %>" style="color: #666">AgileZen</a> to send you notifications.<br/>
+								To change how you receive project updates, visit your <a href="<%= @format.url("/dashboard") %>" style="color: #666">dashboard</a> and click the notifications tab.
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

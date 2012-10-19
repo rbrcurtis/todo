@@ -1,0 +1,1 @@
+[<a href="<%=@format.projectLink(@event.project)%>"><%=@event.project.name%></a>] <em><%=@format.truncatePlaintext(@event.story.text)%></em> (<a href="<%=@format.storyLink(@event.project, @event.story)%>"><%- @event.story.ref %></a>) has a new comment from <strong><%=@event.comment.author.name%></strong>: <em><%= @format.truncatePlaintext(@event.comment.text, 100) %></em>

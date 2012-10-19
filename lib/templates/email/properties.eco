@@ -1,0 +1,7 @@
+<tr>
+	<td style="padding: 0 0 20px; font-size: 16px">
+		<%- if @event.story.size? then @format.property('Size', @event.story.size) %>
+		<%- if @event.story.priority? then @format.property('Priority', @event.story.priority) %>
+		<%- if @event.story.deadline? then @format.property('Deadline', @format.date(@event.story.deadline)) %>
+	</td>
+</tr>

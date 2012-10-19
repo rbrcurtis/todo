@@ -1,0 +1,22 @@
+<% @color = 'green' %>
+<% if @event.to? and @action.user.id is @event.to.id: %>
+	<strong><img src="<%=@format.gravatarLink(@action.user)%>"/> <%=@action.user.name%></strong> claimed
+	<a href="<%=@format.storyLink(@event.project, @event.story)%>">#<%- @event.story.ref %></a> in <a href="<%=@format.projectLink(@event.project)%>"><%=@event.project.name%></a>
+	(<em><%=@format.truncatePlaintext(@event.story.text)%></em>)
+<% else: %>
+	<strong><img src="<%=@format.gravatarLink(@action.user)%>"/> <%=@action.user.name%></strong> reassigned
+	<a href="<%=@format.storyLink(@event.project, @event.story)%>">#<%- @event.story.ref %></a> in <a href="<%=@format.projectLink(@event.project)%>"><%=@event.project.name%></a>
+	(<em><%=@format.truncatePlaintext(@event.story.text)%></em>)
+	from
+	<% if not @event.from?: %>
+		<strong>no one</strong>
+	<% else: %>
+		<strong><img src="<%=@format.gravatarLink(@event.from)%>"/> <%=@event.from.name%></strong>
+	<% end %>
+	to
+	<% if not @event.to?: %>
+		<strong>no one</strong>
+	<% else: %>
+		<strong><img src="<%=@format.gravatarLink(@event.to)%>"/> <%=@event.to.name%></strong>
+	<% end %>
+<% end %>

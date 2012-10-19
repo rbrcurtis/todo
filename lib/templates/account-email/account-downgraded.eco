@@ -1,0 +1,45 @@
+<% @subject = "[AgileZen Billing] Downgrade - #{@account.name}, #{@from.description} to #{@to.description}" %>
+<html>
+	<body style="font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 13px">
+		<table style="margin-bottom:1em">
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Account</td>
+				<td><%=@account.name%> (<%=@account.id%>)</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Owner</td>
+				<td><%=@account.owner.name%> (<%=@account.owner.id%>) &mdash; <%=@account.owner.email%></td>
+			</tr>
+			<% if @account.billingId?: %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Billing ID</td>
+				<td><%=@account.billingId%></td>
+			</tr>
+			<% end %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Account Created</td>
+				<td><%=@format.time(@account.createTime)%> UTC</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Bill Start Date</td>
+				<td><%=@format.date(@account.billStartTime)%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Old Plan</td>
+				<td><%=@from.description%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">New Plan</td>
+				<td><%=@to.description%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Refund Given</td>
+				<td><%=if @refunded then "Yes" else "No"%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Reason</td>
+				<td><%=@reason%></td>
+			</tr>
+		</table>
+	</body>
+</html>

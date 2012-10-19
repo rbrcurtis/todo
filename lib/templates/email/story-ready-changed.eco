@@ -1,0 +1,5 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) is #{if @event.ready then 'ready' else 'NOT ready'} to pull" %>
+
+<%- @render('header') %>
+<%- @format.user(@action.user) %> marked the story as <%= if @event.ready then 'ready' else 'NOT ready' %> to pull from the <%- @format.phase(@event.phase) %> phase.
+<%- @render('footer') %>

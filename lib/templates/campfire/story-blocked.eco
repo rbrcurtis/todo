@@ -1,0 +1,1 @@
+[<%=@event.project.name%>] <%=@format.truncatePlaintext(@event.story.text)%> (<%- @event.story.ref %>) was blocked by <%=@action.user.name%>: <%=@event.reason%>

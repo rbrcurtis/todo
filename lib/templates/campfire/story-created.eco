@@ -1,0 +1,1 @@
+[<%=@event.project.name%>] <%=@format.truncatePlaintext(@event.story.text)%> (<%- @event.story.ref %>) was created by <%=@event.creator.name%>

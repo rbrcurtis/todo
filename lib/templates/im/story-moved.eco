@@ -1,0 +1,1 @@
+[<a href="<%=@format.projectLink(@event.project)%>"><%=@event.project.name%></a>] <em><%=@format.truncatePlaintext(@event.story.text)%></em> (<a href="<%=@format.storyLink(@event.project, @event.story)%>"><%- @event.story.ref %></a>) was moved from <strong><%=@event.from.name%></strong> to <strong><%=@event.to.name%></strong> by <strong><%=@action.user.name%></strong>

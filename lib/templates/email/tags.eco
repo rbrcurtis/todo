@@ -1,0 +1,7 @@
+<tr>
+	<td style="padding: 0 0 10px; font-size: 13px">
+		<% for tag in @event.story.tags: %>
+			<%- @format.tag(tag) %>
+		<% end %>
+	</td>
+</tr>

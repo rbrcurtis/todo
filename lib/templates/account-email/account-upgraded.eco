@@ -1,0 +1,64 @@
+<% @subject = "[AgileZen Billing] Upgrade - #{@account.name}, #{@from.description} to #{@to.description}" %>
+<html>
+	<body style="font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 13px">
+		<table style="margin-bottom:1em">
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Account</td>
+				<td><%=@account.name%> (<%=@account.id%>)</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Owner</td>
+				<td><%=@account.owner.name%> (<%=@account.owner.id%>) &mdash; <%=@account.owner.email%></td>
+			</tr>
+			<% if @account.billingId?: %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Billing ID</td>
+				<td><%=@account.billingId%></td>
+			</tr>
+			<% end %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Account Created</td>
+				<td><%=@format.time(@account.createTime)%> UTC</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Bill Start Date</td>
+				<td><%=@format.date(@account.billStartTime)%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Old Plan</td>
+				<td><%=@from.description%></td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">New Plan</td>
+				<td><%=@to.description%></td>
+			</tr>
+		</table>
+		<table style="margin-bottom:1em">
+			<tr>
+				<td colspan="2" style="font-weight:bold">
+					Order Details
+				</td>
+			</tr>
+			<% for charge in @order.charges: %>
+				<tr>
+					<td style="padding-right:40px"><%=charge.description%></td>
+					<td><%=@format.money(charge.amount)%></td>
+				</tr>
+			<% end %>
+			<% if @order.tax > 0: %>
+				<tr>
+					<td style="font-weight:bold;padding-right:40px">Subtotal</td>
+					<td style="font-weight:bold"><%=@format.money(@order.subtotal)%></td>
+				</tr>
+				<tr>
+					<td style="padding-right:40px">Tax</td>
+					<td><%=@format.money(@order.tax)%></td>
+				</tr>
+			<% end %>
+			<tr>
+				<td style="font-weight:bold;padding-right:40px">Total</td>
+				<td style="font-weight:bold"><%=@format.money(@order.amount)%></td>
+			</tr>
+		</table>
+	</body>
+</html>

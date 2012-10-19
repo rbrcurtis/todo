@@ -1,0 +1,71 @@
+<% @subject = "[AgileZen Billing] #{@format.date(@timestamp)} Batch Report - #{@format.money(@total)} - #{@succeeded.length} Successful, #{@failed.length} Failed" %>
+<html>
+	<body style="font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 13px">
+		<% if @succeeded.length > 0: %>
+			<table style="margin-bottom:1em">
+				<tr>
+					<td colspan="2" style="font-weight:bold">
+						Successful Orders
+					</td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold">Transaction ID</td>
+					<td style="font-weight:bold">Customer</td>
+					<td style="font-weight:bold">Account</td>
+					<td style="font-weight:bold">Plan</td>
+					<td style="font-weight:bold">Period</td>
+					<td style="font-weight:bold">Amount</td>
+				</tr>
+				<% for order in @succeeded: %>
+					<tr>
+						<td><%=order.transactionId%></td>
+						<td><%=order.account.owner.name%> (<%=order.account.owner.id%>)</td>
+						<td><%=order.account.name%> (<%=order.account.id%>)</td>
+						<td><%=order.account.plan.description%></td>
+						<td><%=order.commitment%></td>
+						<td><%=@format.money(order.amount)%></td>
+					</tr>
+				<% end %>
+				<tr>
+					<td style="font-weight:bold" colspan="5">Batch Total</td>
+					<td style="font-weight:bold"><%=@format.money(@total)%></td>
+				</tr>
+			</table>
+		<% end %>
+ 		<% if @failed.length > 0: %>
+			<table style="margin-bottom:1em">
+				<tr>
+					<td colspan="2" style="font-weight:bold">
+						Failed Orders
+					</td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold">Transaction ID</td>
+					<td style="font-weight:bold">Customer</td>
+					<td style="font-weight:bold">Account</td>
+					<td style="font-weight:bold">Plan</td>
+					<td style="font-weight:bold">Period</td>
+					<td style="font-weight:bold">Last Billed</td>
+					<td style="font-weight:bold">Bill Due</td>
+					<td style="font-weight:bold">Amount</td>
+					<td style="font-weight:bold">Code</td>
+					<td style="font-weight:bold">Response</td>
+				</tr>
+				<% for order in @failed: %>
+				<tr>
+					<td><%=order.transactionId%></td>
+					<td><%=order.account.owner.name%> (<%=order.account.owner.id%>)</td>
+					<td><%=order.account.name%> (<%=order.account.id%>)</td>
+					<td><%=order.account.plan.description%></td>
+					<td><%=order.commitment%></td>
+					<td><%= if not order.account.lastBillDate? then 'N/A' else @format.date(order.account.lastBillDate) %></td>
+					<td><%= if not order.account.nextBillDate? then 'N/A' else @format.date(order.account.nextBillDate) %></td>
+					<td><%=@format.money(order.amount)%></td>
+					<td><%=order.responseCode%></td>
+					<td><%=order.responseText%></td>
+				</tr>
+				<% end %>
+			</table>
+		<% end %>
+	</body>
+</html>

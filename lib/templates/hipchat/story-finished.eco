@@ -1,0 +1,4 @@
+<% @color = 'green' %>
+<strong><img src="<%=@format.gravatarLink(@action.user)%>"/> <%=@action.user.name%></strong> finished work on
+<a href="<%=@format.storyLink(@event.project, @event.story)%>">#<%- @event.story.ref %></a> in <a href="<%=@format.projectLink(@event.project)%>"><%=@event.project.name%></a>
+(<em><%=@format.truncatePlaintext(@event.story.text)%></em>)

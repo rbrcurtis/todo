@@ -1,0 +1,39 @@
+<tr>
+	<td style="padding: 20px 0; background-color: #eee; border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd">
+		<table style="width:100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px; border-right: 1px dotted #ccc">
+					Created
+				</td>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px; border-right: 1px dotted #ccc">
+					Started
+				</td>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px">
+					Finished
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 33%; text-align: center; color: #666; font-size: 14px; border-right: 1px dotted #ccc">
+					<span style="color: #444"><%- @format.time(@event.story.createtime) %></span><br/>
+				</td>
+				<td style="width: 33%; text-align: center; color: #666; font-size: 14px; border-right: 1px dotted #ccc">
+					<span style="color: #444"><%- @format.time(@event.story.starttime) %></span><br/>
+				</td>
+				<td style="width: 33%; text-align: center; color: #666; font-size: 14px">
+					<span style="color: #444"><%- @format.time(@event.story.finishtime) %></span><br/>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 33%; text-align: center; color: #888; font-size: 13px; border-right: 1px dotted #ccc">
+					<%= @format.since(@event.story.createtime, @action.timestamp) %>
+				</td>
+				<td style="width: 33%; text-align: center; color: #888; font-size: 13px; border-right: 1px dotted #ccc">
+					<%= @format.since(@action.timestamp, @event.story.starttime) %>
+				</td>
+				<td style="width: 33%; text-align: center; color: #888; font-size: 13px">
+					<%= @format.since(@action.timestamp, @event.story.finishtime) %>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>

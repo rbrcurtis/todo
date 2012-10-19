@@ -1,0 +1,6 @@
+<% @color = if @event.ready then 'green' else 'red' %>
+<strong><img src="<%=@format.gravatarLink(@action.user)%>"/> <%=@action.user.name%></strong> marked
+<a href="<%=@format.storyLink(@event.project, @event.story)%>">#<%- @event.story.ref %></a> in <a href="<%=@format.projectLink(@event.project)%>"><%=@event.project.name%></a>
+(<em><%=@format.truncatePlaintext(@event.story.text)%></em>)
+<strong><%= if @event.ready then 'ready to pull' else 'not ready to pull' %></strong>
+from <strong><%=@event.phase.name%></strong>

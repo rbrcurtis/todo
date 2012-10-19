@@ -1,0 +1,5 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) was finished" %>
+
+<%- @render('header') %>
+<%- @format.user(@action.user) %> moved the story to the <%- @format.phase(@event.story.phase) %> phase, indicating that work has been finished.
+<%- @render('footer') %>

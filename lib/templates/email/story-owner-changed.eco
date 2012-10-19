@@ -1,0 +1,9 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) was reassigned" %>
+
+<%- @render('header') %>
+<% if @event.to? and @action.user.id is @event.to.id: %>
+	<%- @format.user(@action.user) %> claimed the story.
+<% else: %>
+	<%- @format.user(@action.user) %> reassigned the story from <%- @format.user(@event.from) %> to <%- @format.user(@event.to) %>.
+<% end %>
+<%- @render('footer') %>

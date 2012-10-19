@@ -1,0 +1,58 @@
+<% @subject = "Welcome to AgileZen!" %>
+<html>
+<body>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,800,700,600' rel='stylesheet' type='text/css'>
+	<table width="100%">
+		<tr>
+			<td>
+				<table width="600px" style="background-color:#fff;font-family:'Open Sans',Cambria,Georgia,Times New Roman,serif;" cellpadding="5" align="center">
+					<tr>
+						<td colspan="2" align="center">
+							<a href="http://beta.agilezen.com"><img src="https://s3.amazonaws.com/assets.agilezen.com/marketingv2/EMail_Header.png" alt="AgileZen Logo" title="AgileZen Logo Header"/></a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<p>
+								<strong style="font-size:1.5em;">Welcome to AgileZen</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="left">
+							<p>
+								Thanks for registering for the beta version of AgileZen. We are continuing to update the product and are very happy that you want to try us out.
+							</p>
+							<p>
+								If you like using AgileZen and have a website or blog, please consider adding a link to <a href="http://www.agilezen.com">http://www.agilezen.com</a>. Every link helps!
+							</p>
+							<p>
+								You should follow us on Twitter <a href="http://www.twitter.com/agilezen">here</a>.
+							</p>
+							<p>
+								And don't forget to invite your friends!
+							</p>
+							<p>
+								- The AgileZen Team
+							</p>
+						</td>
+					</tr>
+					<!-- Email Footer -->
+					<tr style="background-color: #262626;">
+						<td colspan="2" align="center" style="background-color: #262626;">
+							<p style="text-align:center; color: #e3e3e3">
+								Copyright &copy;2012 Rally Software Development Corp.
+							</p>
+							<p style="text-align:center; color: #e3e3e3">
+								<a href="http://twitter.com/#!/agilezen"><img src="https://s3.amazonaws.com/assets.agilezen.com/marketingv2/twitter_sml.png" alt="Twitter" /></a>
+								<a href="http://www.facebook.com/pages/AgileZen/145305312168265"><img src="https://s3.amazonaws.com/assets.agilezen.com/marketingv2/fb_sml.png" alt="Facebook" /></a>
+								<a href="http://blog.agilezen.com"><img src="https://s3.amazonaws.com/assets.agilezen.com/marketingv2/blog_sml.png" alt="Blog" /></a>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

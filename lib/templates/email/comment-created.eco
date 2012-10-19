@@ -1,0 +1,12 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) has a new comment from #{@event.comment.author.name}" %>
+
+<%- @render('header') %>
+<%- @format.user(@event.comment.author) %> commented on the story:
+<table style="padding: 10px 0 0; width: 100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="font-size: 16px; font-style: italic; color: #666">
+			<%- @event.comment.text %>
+		</td>
+	</tr>
+</table>
+<%- @render('footer') %>

@@ -1,0 +1,1 @@
+[<%=@event.project.name%>] <%=@format.truncatePlaintext(@event.story.text)%> (<%- @event.story.ref %>) was marked <%- if not @event.ready then 'NOT' %> ready to pull from <%=@event.phase.name%> by <%=@action.user.name%>

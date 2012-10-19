@@ -1,0 +1,5 @@
+<% if @event.to? and @action.user.id is @event.to.id: %>
+[<%=@event.project.name%>] <%=@format.truncatePlaintext(@event.story.text)%> (<%- @event.story.ref %>) was claimed by <%=@action.user.name%>
+<% else: %>
+[<%=@event.project.name%>] <%=@format.truncatePlaintext(@event.story.text)%> (<%- @event.story.ref %>) was reassigned from <%=if not @event.from? then 'no one' else @event.from.name%> to <%=if not @event.to? then 'no one' else @event.to.name%> by <%=@action.user.name%>
+<% end %>

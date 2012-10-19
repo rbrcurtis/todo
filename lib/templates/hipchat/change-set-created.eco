@@ -1,0 +1,4 @@
+<% @color = 'green' %>
+<strong><img src="<%- @format.gravatarLink(@action.user) %>"/> <%- if @event.changeset.creator? then @event.changeset.creator.name else @event.changeset.creatorName %></strong> created
+Changeset <a href="<%- @event.changeset.url %>"><%- @event.changeset.guid.substr(0,7) %></a> in <a href="<%- @format.projectLink(@event.project) %>"><%= @event.project.name %></a>:<br/>
+<em><%- @format.changesetMessage(@event.project.id, @event.changeset.message) %></em>

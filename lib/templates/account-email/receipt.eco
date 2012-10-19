@@ -1,0 +1,57 @@
+<% @subject = "AgileZen Payment Receipt: Order #{@order.transactionId}" %>
+<html>
+	<body style="font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 13px">
+		<p style="margin-bottom:1em">
+			Your AgileZen account has successfully been charged <strong><%=@format.money(@order.amount)%></strong>
+			to your <strong><%=@format.creditCard(@order.creditCard)%></strong>.
+		</p>
+		<hr />
+		<p style="margin-bottom:1em">
+			<strong>Order #<%=@order.transactionId%></strong><br />
+			<%=@format.time(@timestamp)%> GMT
+		</p>
+		<p style="margin-bottom:1em">
+			Rally Software Development Corp.<br />
+			3333 Walnut St.<br />
+			Boulder, CO 80301 USA
+		</p>
+		<table style="margin-bottom:1em">
+			<tr>
+				<td colspan="2" style="font-weight:bold">
+					Order summary
+				</td>
+			</tr>
+			<% for charge in @order.charges: %>
+				<tr>
+					<td style="padding-right:40px"><%=charge.description%></td>
+					<td><%=@format.money(charge.amount)%></td>
+				</tr>
+			<% end %>
+			<% if @order.tax > 0: %>
+				<tr>
+					<td style="font-weight:bold">Subtotal</td>
+					<td style="font-weight:bold"><%=@format.money(@order.subtotal)%></td>
+				</tr>
+				<tr>
+					<td>Tax</td>
+					<td><%=@format.money(@order.tax)%></td>
+				</tr>
+			<% end %>
+			<tr>
+				<td style="font-weight:bold">Total</td>
+				<td style="font-weight:bold"><%=@format.money(@order.amount)%></td>
+			</tr>
+		</table>
+		<hr />
+		<p style="margin-bottom:1em">
+			You can see a copy of this order at any time on your dashboard. If you have any questions concerning your order,
+			please reply to this email.
+		</p>
+		<p>
+			Thank you for your business!
+		</p>
+		<p style="margin: 1em 0 0 0; padding-top: 1em; border-top: 1px dotted #ddd; font-family: Georgia; font-style: italic; color: #999">
+			The AgileZen Team
+		</p>
+	</body>
+</html>

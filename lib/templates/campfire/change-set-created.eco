@@ -1,0 +1,1 @@
+[<%=@event.project.name%>] Changeset (<%- @event.changeset.guid.substr(0,7) %>) was committed by <%= if @event.changeset.creator? then @event.changeset.creator.name else @event.changeset.creatorName %>: <%= @format.truncatePlaintext(@event.changeset.message) %>

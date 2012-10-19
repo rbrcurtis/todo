@@ -1,0 +1,5 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) has a new attachment named #{@event.attachment.fileName}" %>
+
+<%- @render('header') %>
+<%- @format.user(@action.user) %> attached a file named <a style="color: #666" href="<%- @format.attachmentLink(@event.project, @event.story, @event.attachment) %>"><%= @event.attachment.fileName %></a> to the story.
+<%- @render('footer') %>

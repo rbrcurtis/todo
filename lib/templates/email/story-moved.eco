@@ -1,0 +1,5 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) was moved from #{@event.from.name} to #{@event.to.name}" %>
+
+<%- @render('header') %>
+<%- @format.user(@action.user) %> moved the story from the <%- @format.phase(@event.from) %> phase to the <%- @format.phase(@event.to) %> phase.
+<%- @render('footer') %>

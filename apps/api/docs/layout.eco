@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+	<title>AgileZen API - <%- @name %></title>
+	<script type="text/javascript" src="http://use.typekit.com/csy5lyn.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<style type="text/css">
+	body, html {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		width: 100%;
+	}
+	body {
+		font-family: 'ff-basic-gothic-web-pro', sans-serif;
+		text-rendering: optimizeLegibility;
+	}
+	h1 { margin-bottom: 0; }
+	table { height: 100%; }
+	tr.footer { height: 100%; }
+	td {
+		border: 0;
+		outline: 0;
+		vertical-align: top;
+	}
+	td.header {
+		padding: 10px 25px;
+		color: #222;
+	}
+	td.desc, td.type, td.data { line-height: 22px; }
+	td.desc {
+		text-align: right;
+		padding: 10px 25px;
+		max-width: 350px;
+		min-width: 350px;
+		color: #222;
+		overflow-x: hidden;
+	}
+	td.type {
+		font-size: 15px;
+		font-style: italic;
+		padding: 10px 25px 10px 0;
+		max-width: 50px;
+		min-width: 50px;
+		color: #999;
+	}
+	td.data {
+		font-size: 15px;
+		padding: 10px 25px;
+		width: 100%;
+		color: #777;
+		background: #f5f9f5;
+		border-left: 1px solid #e5e9e5;
+	}
+	pre { margin: 0; padding: 0; }
+	span.value { color: #000; }
+	a:link, a:visited { color: #777; }
+	a:hover, a:active { color: #000; }
+	</style>
+</head>
+<body>
+	
+	<table cellpadding="0" cellspacing="0">
+		<tbody>
+		
+			<tr class='header'>
+				<td class='header' colspan='2'>
+					<h1><%- @name %></h1>
+					<p class='desc'><%- @desc %></p>
+				</td>
+				<td class='data'></td>
+			</tr>
+			
+			<%- @body %>
+			
+			<tr class='footer'>
+				<td class='footer' colspan='2'></td>
+				<td class='data'></td>
+			</tr>
+
+		</tbody>
+	</table>
+	
+</body>
+</html>

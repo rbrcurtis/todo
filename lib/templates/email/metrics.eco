@@ -1,0 +1,56 @@
+<tr>
+	<td style="padding: 20px 0; background-color: #eee; border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd">
+		<table style="width:100%; color: #888; font-size: 14px" cellpadding="0" cellspacing="0">
+			<tr>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px; border-right: 1px dotted #ccc">
+					Lead Time
+				</td>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px; border-right: 1px dotted #ccc">
+					Cycle Time
+				</td>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px">
+					Work Time
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 33%; text-align: center; border-right: 1px dotted #ccc; font-size: 16px">
+					<span style="color: #666"><%-@format.toDays(@event.story.leadtime)%></span> 
+				</td>
+				<td style="width: 33%; text-align: center; border-right: 1px dotted #ccc; font-size: 16px">
+					<span style="color: #666"><%-@format.toDays(@event.story.cycletime)%></span> 
+				</td>
+				<td style="width: 33%; text-align: center; font-size: 16px">
+					<span style="color: #666"><%-@format.toDays(@event.story.worktime)%></span> 
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td style="padding: 20px 0; background-color: #eee; border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd">
+		<table style="width:100%; color: #888; font-size: 14px" cellpadding="0" cellspacing="0">
+			<tr>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px; border-right: 1px dotted #ccc">
+					Wait Time
+				</td>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px; border-right: 1px dotted #ccc">
+					Blocked Time
+				</td>
+				<td style="width: 33%; text-align: center; color: #000; font-size: 18px">
+					Efficiency
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 33%; text-align: center; border-right: 1px dotted #ccc; font-size: 16px">
+					<span style="color: #666"><%-@format.toDays(@event.story.waittime)%></span>
+				</td>
+				<td style="width: 33%; text-align: center; border-right: 1px dotted #ccc; font-size: 16px">
+					<span style="color: #666"><%-@format.toDays(@event.story.blockedtime)%></span>
+				</td>
+				<td style="width: 33%; text-align: center; font-size: 16px">
+					<span style="color: #666"><%=@format.percent(@event.story.efficiency)%></span>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>

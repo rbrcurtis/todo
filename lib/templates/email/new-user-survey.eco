@@ -1,0 +1,70 @@
+<% @subject = "The AgileZen team needs your feedback!" %>
+<html>
+<head>
+	
+</head>
+<body>
+	<table width="100%">
+		<tr>
+			<td>
+				<table align="center" width="500px" style="background-color:#efefef;font-family:Cambria,Georgia,Times New Roman,serif;" cellpadding="5">
+					<tr>
+						<td width="295px" align="left">
+							<p>
+								Welcome to the AgileZen community! We hope you're finding AgileZen helpful for organizing your work and collaborating with others.
+							</p>
+						</td>
+						<td width="195px" align="right" valign="top">
+							<a href="http://www.agilezen.com"><img src="http://www.agilezen.com/content/css/content/images/external/logo.png" alt="AgileZen Logo" width="187" /></a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p>
+								We love getting feedback from our customers, and we want to hear what you have to say. Below is a link to take a short survey about your experience with AgileZen so far.
+							</p>
+							<p>
+								The survey should take less than 5 minutes of your time. We know you're busy, so if you fill out all of the questions, we'll enter you in this quarter's drawing for a sweet prize: a new Amazon Kindle Fire. Not bad for a few minutes of your time :)
+							</p>
+							<p>
+								If you would like to participate, please click the following link or paste it in to your browser:
+							</p>
+							<p>
+								<%-@surveyLink%>
+							</p>
+							<p>
+								You will be contacted via email if you win. If you have questions, please contact us at <a href="mailto:survey@agilezen.com">survey@agilezen.com</a>.
+							</p>
+							<p>
+								Thanks in advance for your participation.
+							</p>
+							<p>
+								- The AgileZen Team
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<hr noshade />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<p>
+								<a href="http://twitter.com/#!/agilezen"><img src="http://www.agilezen.com/content/css/content/images/external/icon-twitter.png" alt="AgileZen Twitter" width="150px" /></a>
+								<a href="http://www.facebook.com/pages/AgileZen/145305312168265"><img src="http://www.agilezen.com/content/css/content/images/external/icon-facebook.png" alt="AgileZen Facebook" width="150px" /></a>
+								<a href="http://blog.agilezen.com"><img src="http://www.agilezen.com/content/css/content/images/external/icon-rss.png" alt="AgileZen Blog" width="150px" /></a>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" style="font-size:.7em;color:grey;">
+							To unsubscribe click <a href="https://agilezen.com/settings">here</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

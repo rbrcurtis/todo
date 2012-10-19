@@ -1,0 +1,25 @@
+<% @subject = "AgileZen Account Warning: Order Declined" %>
+<html>
+	<body style="font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 13px">
+		<p style="margin-bottom:1em">
+			Your monthly fee for AgileZen is due for your account named <strong><%=@order.account.name%></strong>.
+			We tried to charge <strong>$<%=@order.amount%></strong> to your <strong><%=@format.creditCard(@order.creditCard)%></strong>,
+			but the transaction was declined.
+		</p>
+		<p style="margin-bottom:1em">
+			Please ensure that your credit card information is correct, and that your credit card
+			has not expired. To change the credit card that your account is billed to, go to your dashboard and
+			click the <strong>Change Billing</strong> button under the account you wish to change.
+		</p>
+		<p style="margin-bottom:1em">
+			Your account will be billed again in 24 hours. Please be aware that if the charges continue to be
+			declined, <strong>your account may be disabled!</strong>
+		</p>
+		<p style="margin-bottom:1em">
+			If you have any questions, please visit our <a href="http://help.agilezen.com/">help site</a> or reply to this email.
+		</p>
+		<p style="margin: 1em 0 0 0; padding-top: 1em; border-top: 1px dotted #ddd; font-family: Georgia; font-style: italic; color: #999">
+			The AgileZen Team
+		</p>
+	</body>
+</html>

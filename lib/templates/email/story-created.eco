@@ -1,0 +1,5 @@
+<% @subject = "[#{@event.project.name}] #{@format.truncatePlaintext(@event.story.text)} (##{@event.story.ref}) was created" %>
+
+<%- @render('header') %>
+<%- @format.user(@event.creator) %> created the story in the <%- @format.phase(@event.phase) %> phase.
+<%- @render('footer') %>
