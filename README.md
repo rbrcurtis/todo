@@ -1,1 +1,1 @@
-This project a demonstration of a todo app using a fork of the beta agilezen rest api.  Its a work in progress and I have no expectation that it actually runs after any given commit.
+This project is a demonstration of a todo app using a fork of the beta agilezen rest api.  Its a work in progress and I have no expectation that it actually runs after any given commit.
