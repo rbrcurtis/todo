@@ -27,14 +27,23 @@ module.exports = new class UserRepository extends DocumentRepository
 		userId = token.substr 0,24
 		tokenId = token.substr 24
 		@getById userId, (err, user) =>
+			debug 'auth', 'get by token', userId, user
 			unless user? then return callback? err, user
-			for token in user.tokens
-				debug 'auth', 'token', token, false
-				if token?.expires?.getTime() < Date.now()
-					db.tokens.remove token
-		
-			if user.tokens.id(tokenId) then return callback null, user
-			else return callback null, null
+
+			debug 'auth', 'reducing tokens', user.tokens
+
+			async.reduce user.tokens, user, 
+				(user, token, callback) =>
+					debug 'auth', 'token', token, token?.expires?.getTime() < Date.now()
+					if token?.expires?.getTime() < Date.now()
+						return db.tokens.remove token, callback
+					else return callback(null, user)
+				(err, user) =>
+					debug 'auth', 'reduced tokens', user?.tokens
+					unless user? then return callback()
+					
+					if user.tokens.id(tokenId) then return callback null, user
+					else return callback null, null
 
 	findByProject: (project, options, callback) ->
 		members = {}
