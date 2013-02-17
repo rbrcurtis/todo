@@ -19,8 +19,23 @@ module.exports = new class UserRepository extends DocumentRepository
 		@get {username}, options, callback
 		
 	getByToken: (token, options, callback) ->
-		@get {token}, options, callback
-	
+		callback = @_findCallback arguments...
+		unless token then return callback? null, null
+		unless token.length > 24
+			log 'invalid token', token
+			return callback? null, null
+		userId = token.substr 0,24
+		tokenId = token.substr 24
+		@getById userId, (err, user) =>
+			unless user? then return callback? err, user
+			for token in user.tokens
+				debug 'auth', 'token', token, false
+				if token?.expires?.getTime() < Date.now()
+					db.tokens.remove token
+		
+			if user.tokens.id(tokenId) then return callback null, user
+			else return callback null, null
+
 	findByProject: (project, options, callback) ->
 		members = {}
 		for role in project.roles

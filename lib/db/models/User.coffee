@@ -7,6 +7,8 @@ Mixed = mongoose.Schema.Types.Mixed
 auth = require 'lib/auth'
 plugins = require './plugins'
 
+TokenSchema = require('./Token').schema
+
 UserSchema = new mongoose.Schema
 	_id:
 		type: ObjectId
@@ -31,9 +33,8 @@ UserSchema = new mongoose.Schema
 		type: String
 		set: (value) -> auth.hashPassword(value)
 
-	token:
-		type: ObjectId
-		index: {background: true}
+	tokens:
+		type: [TokenSchema]
 		
 	accessed:
 		type: Date

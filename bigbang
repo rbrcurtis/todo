@@ -1,12 +1,14 @@
 #!/usr/bin/env ./node_modules/coffee-script/bin/coffee
 
-global.util = require 'util'
+global._     = require 'underscore'
+global.util  = require 'util'
 global.async = require 'async'
+
 cluster = require 'cluster'
-os = require 'os'
-proc = require 'child_process'
-fs = require 'fs'
-colors = require 'colors'
+os      = require 'os'
+proc    = require 'child_process'
+fs      = require 'fs'
+colors  = require 'colors'
 
 if process.argv.length < 3
 	console.log 'Usage: bigbang <app>'
@@ -15,13 +17,20 @@ if process.argv.length < 3
 
 
 prodMode = if process.argv[3] is '-p' then true else false
+###
+The point of prod mode is to ensure that if there is an unexpected exception in the prod environment, 
+the app should die, and upstart should restart it or the worker will die and the master will restart it. 
+This should keep the apps memory etc 'clean' so no unexpected behavior happens. 
+Without the prodMode flag, the app will hang instead of dying.  This is more helpful for developing 
+because the app will restart when a file is changed such as when the exception is fixed
+###
 
-global._      = require 'underscore'
+
 global.CONFIG = require './config'
 global.APP    = require "./apps/#{process.argv[2]}"
 
 logPrefix = "#{APP.name} [#{if cluster.isMaster then 'master' else 'worker'} #{process.pid}]"
-global.log      = (args...) -> unless CONFIG.logging is false then console.log "#{new Date().toLocaleString()} #{logPrefix}", args...
+global.log      = (args...) -> unless CONFIG.logging is false then console.log "#{new Date().toLocaleString()} #{Date.now()} #{logPrefix}", args...
 global.logError = (args...) ->
 	msg = "#{new Date().toLocaleString()} [ERROR] #{logPrefix}"
 	for i,arg of args
@@ -29,17 +38,11 @@ global.logError = (args...) ->
 			stack = true
 			args[i] = arg.stack
 	console.log msg.red, args...
-	unless stack then console.trace()
+	unless stack or cluster.isMaster then console.trace()
 	
-global.debug    = (type, args..., sendToLog) ->
-	if sendToLog and typeof sendToLog isnt 'boolean'
-		args.push sendToLog
-		sendToLog = false
-	# console.log "type is #{type}, config is [#{CONFIG.debug}]".yellow, CONFIG.debug?, typeof CONFIG.debug, CONFIG.debug is type, _.contains CONFIG.debug, type
-	if CONFIG.debug? and ((typeof CONFIG.debug is 'string' and CONFIG.debug is type) or (typeof CONFIG.debug is 'object' and _.contains CONFIG.debug, type))
-		console.log "#{new Date().toLocaleString()} #{logPrefix} [#{type}]".cyan, args...
-	
-	if sendToLog then log args...
+global.debug    = (type, args...) ->
+	if CONFIG.debug? and ((CONFIG.debug is true) or (typeof CONFIG.debug is 'string' and CONFIG.debug is type) or (typeof CONFIG.debug is 'object' and _.contains CONFIG.debug, type))
+		console.log "#{new Date().toLocaleString()} #{Date.now()} #{logPrefix} [#{type}]".cyan, args...
 
 global.notify = (title, msg, error = false) ->
 	if error and msg is 'The "sys" module is now called "util". It should have a similar interface.'
@@ -51,6 +54,7 @@ global.notify = (title, msg, error = false) ->
 	else
 		console.log "#{title} : #{msg}".green
 		
+if prodMode then log "Starting in Production Mode"
 
 appPath = "#{__dirname}/apps/#{process.argv[2]}"
 process.env.NODE_PATH+=":#{appPath}:#{__dirname}"
@@ -81,6 +85,7 @@ if process.env.PROC_MASTER or APP.name is 'repl'
 				notify "[#{APP.name}] death", "worker #{worker.process.pid} died :(", true
 			else
 				notify "[#{APP.name}] death", "worker #{worker.process.pid} exited", false
+
 			if prodMode
 				if code isnt 0
 					cluster.fork()
@@ -91,7 +96,7 @@ if process.env.PROC_MASTER or APP.name is 'repl'
 					process.exit 0
 			else
 				hang = ->
-					process.nextTick hang
+					setTimeout (->process.nextTick hang), 60000
 				hang()
 					
 				
@@ -110,14 +115,13 @@ else
 		process.stdin.pipe master.stdin
 		master.on 'exit', exit
 		return master
+
 	exit = (code, signal) ->
 		# notify "master #{master.pid} exit", "exit with code #{code}, signal #{signal}", false
 		if signal is 'SIGUSR2' 
 			master = startMaster()
-		else if code is 0
-			process.exit 0
-
-		# else do nothing
+		else if prodMode
+			process.exit code
 
 	master = startMaster()
 	

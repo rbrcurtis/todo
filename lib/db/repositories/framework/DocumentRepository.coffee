@@ -4,7 +4,7 @@ Repository = require './Repository'
 error = require 'lib/error'
 
 
-class DocumentRepository extends Repository
+module.exports = class DocumentRepository extends Repository
 	
 	constructor: ->
 		super
@@ -44,4 +44,6 @@ class DocumentRepository extends Repository
 		if _.isObject(ref) and ref.id? then return ref.id
 		return undefined
 
-module.exports = DocumentRepository
+	_findCallback: (args...) ->
+		return _.find args, (arg) -> typeof arg is 'function'
+
